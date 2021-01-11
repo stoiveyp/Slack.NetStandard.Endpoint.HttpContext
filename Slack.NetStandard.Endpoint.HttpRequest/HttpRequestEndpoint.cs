@@ -12,13 +12,13 @@ namespace Slack.NetStandard.Endpoint.HttpRequest
 {
     public class HttpRequestEndpoint:SlackEndpoint<Microsoft.AspNetCore.Http.HttpRequest>
     {
-        public HttpRequestEndpoint(string signingSecret, bool requireBodyRewind = false)
+        public HttpRequestEndpoint(string signingSecret, bool requireBodyRewind = false, TimeSpan? verifierTolerance = null)
         {
-            Verifier = new RequestVerifier(signingSecret);
+            Verifier = new RequestVerifier(signingSecret,verifierTolerance);
             RequireBodyRewind = requireBodyRewind;
         }
 
-        public bool RequireBodyRewind { get; set; }
+        protected bool RequireBodyRewind { get; set; }
         protected RequestVerifier Verifier { get; set; }
 
         private bool HasHeaders(Microsoft.AspNetCore.Http.HttpRequest request)
@@ -48,7 +48,7 @@ namespace Slack.NetStandard.Endpoint.HttpRequest
 
         protected override async Task<SlackInformation> GenerateInformation(Microsoft.AspNetCore.Http.HttpRequest request)
         {
-            var validHeaders = !HasHeaders(request);
+            var validHeaders = HasHeaders(request);
             if (!validHeaders)
             {
                 return new SlackInformation(SlackRequestType.UnknownRequest);
