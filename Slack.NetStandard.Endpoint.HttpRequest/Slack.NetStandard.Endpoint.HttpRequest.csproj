@@ -7,11 +7,12 @@
     <Authors>Steven Pears</Authors>
     <Company>Steven Pears</Company>
     <Description>Small library to help make building slack apps easier when you have access to an HttpRequest object</Description>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Swap EnableRewind for EnableBuffering</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/stoiveyp/Slack.NetStandard.Endpoint.HttpRequest</RepositoryUrl>
     <PackageProjectUrl>https://github.com/stoiveyp/Slack.NetStandard.Endpoint.HttpRequest</PackageProjectUrl>
     <PackageTags>slack, httprequest</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

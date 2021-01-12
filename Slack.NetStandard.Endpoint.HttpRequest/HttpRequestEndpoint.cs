@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Newtonsoft.Json;
 using Slack.NetStandard.EventsApi;
@@ -33,7 +34,7 @@ namespace Slack.NetStandard.Endpoint.HttpRequest
             long.TryParse(request.Headers[RequestVerifier.TimestampHeaderName], out var timestamp);
             if (RequireBodyRewind)
             {
-                request.EnableRewind();
+                request.EnableBuffering();
             }
 
             using var sr = new StreamReader(request.Body);
